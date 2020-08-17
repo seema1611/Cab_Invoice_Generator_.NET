@@ -48,14 +48,15 @@ namespace CabInvoiceGeneratorTest
         }
 
         /// <summary>
-        /// Create Test For Calculate Aggregate Of Multiplr Rides.
+        /// Create Test For Calculate Aggregate Of Multiple Rides.
         /// </summary>
         [Test]
         public void GivenMuiltpleRides_WhenRidesMoreThanFive_ShouldReturnTotalFare()
         {
             Ride[] ride = { new Ride(2.0, 5), new Ride(2.0, 5) };
-            double fare = this.cabInvoiceGenerator.AddRide(ride);
-            Assert.AreEqual(25, fare);
+            InvoiceSummary summary = this.cabInvoiceGenerator.AddRide(ride);
+            InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2, 50.0);
+            Assert.AreEqual(expectedInvoiceSummary, summary);
         }
     }
 }
