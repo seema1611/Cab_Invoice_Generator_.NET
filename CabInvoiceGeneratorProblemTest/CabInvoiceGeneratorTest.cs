@@ -27,5 +27,17 @@ namespace CabInvoiceGeneratorProblemTest
             double fare = this.cabInvoiceGenerator.CalculateFare(distance, time);
             Assert.AreEqual(25, fare);
         }
+
+        /// <summary>
+        /// Create Test For Calculate Minimum Fare.
+        /// </summary>
+        [Test]
+        public void GivenDistanceAndTime_WhenlessthanFive_ShouldReturnTotalFare()
+        {
+            double distance = 0.1;
+            int time = 1;
+            double fare = this.cabInvoiceGenerator.CalculateFare(distance, time);
+            Assert.AreEqual(5.0, fare);
+        }
     }
 }
