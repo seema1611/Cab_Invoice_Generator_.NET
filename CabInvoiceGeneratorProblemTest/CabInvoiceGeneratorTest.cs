@@ -1,8 +1,15 @@
-namespace CabInvoiceGeneratorProblemTest
+// <copyright file="CabInvoiceGeneratorTest.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace CabInvoiceGeneratorTest
 {
     using CabInvoiceGeneratorProblem;
     using NUnit.Framework;
 
+    /// <summary>
+    /// Create Test Class.
+    /// </summary>
     public class CabInvoiceGeneratorTest
     {
         private CabInvoiceGenerator cabInvoiceGenerator;
@@ -38,6 +45,17 @@ namespace CabInvoiceGeneratorProblemTest
             int time = 1;
             double fare = this.cabInvoiceGenerator.CalculateFare(distance, time);
             Assert.AreEqual(5.0, fare);
+        }
+
+        /// <summary>
+        /// Create Test For Calculate Aggregate Of Multiplr Rides.
+        /// </summary>
+        [Test]
+        public void GivenMuiltpleRides_WhenRidesMoreThanFive_ShouldReturnTotalFare()
+        {
+            Ride[] ride = { new Ride(2.0, 5), new Ride(2.0, 5) };
+            double fare = this.cabInvoiceGenerator.AddRide(ride);
+            Assert.AreEqual(25, fare);
         }
     }
 }
