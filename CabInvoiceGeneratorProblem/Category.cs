@@ -4,7 +4,7 @@
 
 namespace CabInvoiceGeneratorProblem
 {
-    public class RideTypeEnum
+    public class Category
     {
         public double costPerKm;
         public int costPerMin;
@@ -17,19 +17,19 @@ namespace CabInvoiceGeneratorProblem
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RideTypeEnum"/> class.
+        /// Initializes a new instance of the <see cref="Category"/> class.
         /// </summary>
-        public RideTypeEnum()
+        public Category()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RideTypeEnum"/> class.
+        /// Initializes a new instance of the <see cref="Category"/> class.
         /// </summary>
         /// <param name="costPerKm">Cost Per Kilometer.</param>
         /// <param name="costPerMin">Cost Per Minute.</param>
         /// <param name="minimumFare">Minimum Fare.</param>
-        public RideTypeEnum(double costPerKm, int costPerMin, double minimumFare)
+        public Category(double costPerKm, int costPerMin, double minimumFare)
         {
             this.costPerKm = costPerKm;
             this.costPerMin = costPerMin;
@@ -37,16 +37,16 @@ namespace CabInvoiceGeneratorProblem
         }
 
 
-        public RideTypeEnum GetRideValue(RideType rideType)
+        public Category GetRideValue(RideType rideType)
         {
             if (rideType.Equals(RideType.NORMAL))
             {
-                return new RideTypeEnum(10, 1, 5);
+                return new Category(10, 1, 5);
             }
 
             if (rideType.Equals(RideType.PREMIUM))
             {
-                return new RideTypeEnum(15, 2, 20);
+                return new Category(15, 2, 20);
             }
             else
             {

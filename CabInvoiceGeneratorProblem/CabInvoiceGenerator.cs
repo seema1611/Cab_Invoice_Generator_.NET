@@ -15,7 +15,7 @@ namespace CabInvoiceGeneratorProblem
         public int COSTPERTIME = 1;
         public double MINIMUMFARE = 5.0;
         private RideRepository rideRepository;
-        private RideTypeEnum type = new RideTypeEnum();
+        private Category type = new Category();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CabInvoiceGenerator"/> class.
@@ -32,16 +32,16 @@ namespace CabInvoiceGeneratorProblem
         /// <param name="distance">Input value distance.</param>
         /// <param name="time">Input value time.</param>
         /// <returns>Calculated Fare.</returns>
-        public double CalculateFare(RideTypeEnum.RideType rideType, double distance, int time)
+        public double CalculateFare(Category.RideType rideType, double distance, int time)
         {
             this.SetValue(rideType);
             double premiumTotalFare = (distance * MINIMUMCOSTPERKILOMETER) + (time * COSTPERTIME);
             return Math.Max(premiumTotalFare, MINIMUMFARE);
         }
 
-        public void SetValue(RideTypeEnum.RideType rideType)
+        public void SetValue(Category.RideType rideType)
         {
-            RideTypeEnum ride = this.type.GetRideValue(rideType);
+            Category ride = this.type.GetRideValue(rideType);
             MINIMUMCOSTPERKILOMETER = ride.costPerKm;
             COSTPERTIME = ride.costPerMin;
             MINIMUMFARE = ride.minimumFare;
@@ -53,7 +53,7 @@ namespace CabInvoiceGeneratorProblem
         /// <param name="rideType">Ride Type.</param>
         /// <param name="rides">Distance and time array.</param>
         /// <returns>Total fare.</returns>
-        public InvoiceSummary AddRide(RideTypeEnum.RideType rideType, Ride[] rides)
+        public InvoiceSummary AddRide(Category.RideType rideType, Ride[] rides)
         {
             double totalFare = 0.0;
             foreach (Ride ride in rides)
@@ -69,7 +69,7 @@ namespace CabInvoiceGeneratorProblem
             this.rideRepository.AddRide(userId, rides);
         }
 
-        public InvoiceSummary GetInvoiceSummary(RideTypeEnum.RideType type, string userID)
+        public InvoiceSummary GetInvoiceSummary(Category.RideType type, string userID)
         {
             return this.AddRide(type, this.rideRepository.GetRides(userID));
         }

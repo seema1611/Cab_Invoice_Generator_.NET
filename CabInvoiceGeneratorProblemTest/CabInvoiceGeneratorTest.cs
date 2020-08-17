@@ -31,7 +31,7 @@ namespace CabInvoiceGeneratorTest
         {
             double distance = 2.0;
             int time = 5;
-            double fare = this.cabInvoiceGenerator.CalculateFare(RideTypeEnum.RideType.NORMAL, distance, time);
+            double fare = this.cabInvoiceGenerator.CalculateFare(Category.RideType.NORMAL, distance, time);
             Assert.AreEqual(25, fare);
         }
 
@@ -43,7 +43,7 @@ namespace CabInvoiceGeneratorTest
         {
             double distance = 0.1;
             int time = 1;
-            double fare = this.cabInvoiceGenerator.CalculateFare(RideTypeEnum.RideType.NORMAL, distance, time);
+            double fare = this.cabInvoiceGenerator.CalculateFare(Category.RideType.NORMAL, distance, time);
             Assert.AreEqual(5, fare);
         }
 
@@ -53,8 +53,8 @@ namespace CabInvoiceGeneratorTest
         [Test]
         public void GivenMuiltpleRides_WhenRidesMoreThanFive_ShouldReturnTotalFare()
         {
-            Ride[] ride = { new Ride(RideTypeEnum.RideType.NORMAL, 2.0, 5), new Ride(RideTypeEnum.RideType.NORMAL, 2.0, 5) };
-            InvoiceSummary summary = this.cabInvoiceGenerator.AddRide(RideTypeEnum.RideType.NORMAL, ride);
+            Ride[] ride = { new Ride(Category.RideType.NORMAL, 2.0, 5), new Ride(Category.RideType.NORMAL, 2.0, 5) };
+            InvoiceSummary summary = this.cabInvoiceGenerator.AddRide(Category.RideType.NORMAL, ride);
             InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2, 50.0);
             Assert.AreEqual(expectedInvoiceSummary, summary);
         }
@@ -66,9 +66,9 @@ namespace CabInvoiceGeneratorTest
         public void GivenUserIdAndRides_ShouldReturnInvoiceSummary()
         {
             string userID = "seemarajpure@gmail.com";
-            Ride[] ride = { new Ride(RideTypeEnum.RideType.NORMAL, 2.0, 5), new Ride(RideTypeEnum.RideType.NORMAL, 2.0, 5) };
+            Ride[] ride = { new Ride(Category.RideType.NORMAL, 2.0, 5), new Ride(Category.RideType.NORMAL, 2.0, 5) };
             this.cabInvoiceGenerator.AddRide(userID, ride);
-            InvoiceSummary summary = this.cabInvoiceGenerator.GetInvoiceSummary(RideTypeEnum.RideType.NORMAL, userID);
+            InvoiceSummary summary = this.cabInvoiceGenerator.GetInvoiceSummary(Category.RideType.NORMAL, userID);
             InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2, 50.0);
             Assert.AreEqual(expectedInvoiceSummary, summary);
         }
@@ -81,8 +81,32 @@ namespace CabInvoiceGeneratorTest
         {
             double distance = 2.0;
             int time = 5;
-            double fare = this.cabInvoiceGenerator.CalculateFare(RideTypeEnum.RideType.PREMIUM, distance, time);
+            double fare = this.cabInvoiceGenerator.CalculateFare(Category.RideType.PREMIUM, distance, time);
             Assert.AreEqual(40, fare);
+        }
+
+        /// <summary>
+        /// Create Test Premium Type For Less Distance Return Minimum Fare.
+        /// </summary>
+        [Test]
+        public void GivenPremiumLessDistanceAndTime_ShouldReturnMinimumFare()
+        {
+            double distance = 0.1;
+            int time = 1;
+            double fare = this.cabInvoiceGenerator.CalculateFare(Category.RideType.PREMIUM, distance, time);
+            Assert.AreEqual(20, fare);
+        }
+
+        /// <summary>
+        /// Create Test Premium Type For Multiple Rides.
+        /// </summary>
+        [Test]
+        public void GivenPremiumMultipleRides_ShouldReturnInvoiceSummary()
+        {
+            Ride[] ride = { new Ride(Category.RideType.PREMIUM, 2.0, 5), new Ride(Category.RideType.PREMIUM, 0.1, 1) };
+            InvoiceSummary summary = this.cabInvoiceGenerator.AddRide(Category.RideType.PREMIUM, ride);
+            InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2, 60.0);
+            Assert.AreEqual(expectedInvoiceSummary, summary);
         }
     }
 }
