@@ -9,6 +9,7 @@ namespace CabInvoiceGeneratorProblem
     /// </summary>
     public class Ride
     {
+        public RideTypeEnum.RideType rideType;
         public double Distance;
         public int Time;
 
@@ -18,8 +19,9 @@ namespace CabInvoiceGeneratorProblem
         /// </summary>
         /// <param name="distance">Value Distance.</param>
         /// <param name="time">Value Time.</param>
-        public Ride(double distance, int time)
+        public Ride(RideTypeEnum.RideType rideType, double distance, int time)
         {
+            this.rideType = rideType;
             this.Distance = distance;
             this.Time = time;
         }
