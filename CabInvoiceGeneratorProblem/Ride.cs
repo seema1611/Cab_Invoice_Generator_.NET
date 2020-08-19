@@ -9,7 +9,7 @@ namespace CabInvoiceGeneratorProblem
     /// </summary>
     public class Ride
     {
-        public Category.RideType rideType;
+        public Category.RideType RideType;
         public double Distance;
         public int Time;
 
@@ -17,11 +17,12 @@ namespace CabInvoiceGeneratorProblem
         /// Initializes a new instance of the <see cref="Ride"/> class.
         /// Create Constructor.
         /// </summary>
+        /// <param name="rideType">RideType .</param>
         /// <param name="distance">Value Distance.</param>
         /// <param name="time">Value Time.</param>
         public Ride(Category.RideType rideType, double distance, int time)
         {
-            this.rideType = rideType;
+            this.RideType = rideType;
             this.Distance = distance;
             this.Time = time;
         }

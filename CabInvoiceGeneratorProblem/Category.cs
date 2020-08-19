@@ -6,14 +6,14 @@ namespace CabInvoiceGeneratorProblem
 {
     public class Category
     {
-        public double costPerKm;
-        public int costPerMin;
-        public double minimumFare;
+        public double CostPerKm;
+        public int CostPerMin;
+        public double MinimumFare;
 
         public enum RideType
         {
             NORMAL,
-            PREMIUM
+            PREMIUM,
         }
 
         /// <summary>
@@ -31,11 +31,10 @@ namespace CabInvoiceGeneratorProblem
         /// <param name="minimumFare">Minimum Fare.</param>
         public Category(double costPerKm, int costPerMin, double minimumFare)
         {
-            this.costPerKm = costPerKm;
-            this.costPerMin = costPerMin;
-            this.minimumFare = minimumFare;
+            this.CostPerKm = costPerKm;
+            this.CostPerMin = costPerMin;
+            this.MinimumFare = minimumFare;
         }
-
 
         public Category GetRideValue(RideType rideType)
         {

@@ -11,7 +11,7 @@ namespace CabInvoiceGeneratorProblem
     /// </summary>
     public class RideRepository
     {
-        private Dictionary<string, List<Ride>> userRides = null;
+        private readonly Dictionary<string, List<Ride>> userRides = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RideRepository"/> class.

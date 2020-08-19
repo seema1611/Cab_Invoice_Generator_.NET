@@ -9,9 +9,9 @@ namespace CabInvoiceGeneratorProblem
     /// </summary>
     public class InvoiceSummary
     {
-        public double averageFare;
-        public double totalFare;
-        public int numberOfRides;
+        public double AverageFare;
+        public double TotalFare;
+        public int NumberOfRides;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InvoiceSummary"/> class.
@@ -20,9 +20,9 @@ namespace CabInvoiceGeneratorProblem
         /// <param name="totalFare">Total Fare.</param>
         public InvoiceSummary(int numberOfRides, double totalFare)
         {
-            this.numberOfRides = numberOfRides;
-            this.totalFare = totalFare;
-            this.averageFare = this.totalFare / this.numberOfRides;
+            this.NumberOfRides = numberOfRides;
+            this.TotalFare = totalFare;
+            this.AverageFare = this.TotalFare / this.NumberOfRides;
         }
 
         /// <summary>
@@ -33,9 +33,9 @@ namespace CabInvoiceGeneratorProblem
         public override bool Equals(object obj)
         {
             return obj is InvoiceSummary summary &&
-                   this.averageFare == summary.averageFare &&
-                   this.totalFare == summary.totalFare &&
-                   this.numberOfRides == summary.numberOfRides;
+                   this.AverageFare == summary.AverageFare &&
+                   this.TotalFare == summary.TotalFare &&
+                   this.NumberOfRides == summary.NumberOfRides;
         }
 
         /// <summary>
