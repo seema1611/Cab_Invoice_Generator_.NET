@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// <copyright file="CabInvoiceException.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace CabInvoiceGeneratorProblem
 {
     using System;
+    using System.Collections.Generic;
+    using System.Text;
 
     public class CabInvoiceException : Exception
     {

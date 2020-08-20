@@ -37,8 +37,8 @@ namespace CabInvoiceGeneratorProblem
         public double CalculateFare(Category.RideType rideType, double distance, int time)
         {
             this.SetValue(rideType);
-            double premiumTotalFare = (distance * this.minimumCostPerKm) + (time * this.costPerTime);
-            return Math.Max(premiumTotalFare, this.minimumFare);
+            double totalFare = (distance * this.minimumCostPerKm) + (time * this.costPerTime);
+            return Math.Max(totalFare, this.minimumFare);
         }
 
         /// <summary>
